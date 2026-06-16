@@ -34,7 +34,21 @@ class ChirpController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the request
+        $validated = $request->validate([
+            'message' => 'required|string|max:255|min:5',
+        ], [
+            'message.required' => 'Please write something to chirp!',
+            'message.max' => 'Chirps must be 255 characters or less',
+        ]);
+
+        // Create the chirp (no user for now - we'll add auth later)
+        Chirp::create([
+            'message' => $validated['message'],
+        ]);
+
+        // Redirect back to the feed
+        return redirect('/')->with('success', 'Your chirp has been posted!');
     }
 
     /**
