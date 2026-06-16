@@ -1,4 +1,4 @@
-<x-home.layout>
+<x-layout>
     <x-slot:title>
         Home Feed
     </x-slot:title>
@@ -37,7 +37,7 @@
         <!-- Feed -->
         <div class="space-y-4 mt-8">
             @forelse ($chirps as $chirp)
-                <x-home.chirp :chirp="$chirp" />
+                <x-chirp.chirp :chirp="$chirp" />
             @empty
                 <div class="hero py-12">
                     <div class="hero-content text-center">
@@ -55,4 +55,4 @@
             @endforelse
         </div>
     </div>
-</x-home.layout>
+</x-layout>
